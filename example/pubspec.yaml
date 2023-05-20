@@ -8,7 +8,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
-  avatar_glow:
+  circular_pulse:
     path: ../
 
   cupertino_icons: ^1.0.2

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:avatar_glow/circular_pulse.dart';
+import 'package:circular_pulse/circular_pulse.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Avatar Glow by @apgapg"),
+        title: Text("Circular Pulse by @ProfessorX737 originally by @apgapg"),
       ),
       body: Container(
         child: ListView(
