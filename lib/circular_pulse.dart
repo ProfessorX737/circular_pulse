@@ -1,10 +1,7 @@
-library avatar_glow;
-
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
-class AvatarGlow extends StatefulWidget {
+class CircularPulse extends StatefulWidget {
   final Widget child;
   final double endRadius;
   final BoxShape shape;
@@ -17,7 +14,7 @@ class AvatarGlow extends StatefulWidget {
   final Color glowColor;
   final Duration? startDelay;
 
-  const AvatarGlow({
+  const CircularPulse({
     Key? key,
     required this.child,
     required this.endRadius,
@@ -33,10 +30,10 @@ class AvatarGlow extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AvatarGlowState createState() => _AvatarGlowState();
+  CircularPulseState createState() => CircularPulseState();
 }
 
-class _AvatarGlowState extends State<AvatarGlow>
+class CircularPulseState extends State<CircularPulse>
     with SingleTickerProviderStateMixin {
   late final _controller = AnimationController(
     duration: widget.duration,
@@ -59,18 +56,18 @@ class _AvatarGlowState extends State<AvatarGlow>
     end: 0.0,
   ).animate(_controller);
 
-  late Timer _repeatPauseTimer;
+  Timer? _repeatPauseTimer;
 
-  late void Function(AnimationStatus status) _statusListener = (_) async {
-    if (controller.status == AnimationStatus.completed) {
+  void _statusListener(AnimationStatus status) async {
+    if (_controller.status == AnimationStatus.completed) {
       _repeatPauseTimer = Timer(widget.repeatPauseDuration, () {
         if (mounted && widget.repeat && widget.animate) {
-          controller.reset();
-          controller.forward();
+          _controller.reset();
+          _controller.forward();
         }
       });
     }
-  };
+  }
 
   @override
   void initState() {
@@ -81,7 +78,7 @@ class _AvatarGlowState extends State<AvatarGlow>
   }
 
   @override
-  void didUpdateWidget(AvatarGlow oldWidget) {
+  void didUpdateWidget(CircularPulse oldWidget) {
     if (widget.animate != oldWidget.animate) {
       if (widget.animate) {
         _startAnimation();
@@ -149,12 +146,12 @@ class _AvatarGlowState extends State<AvatarGlow>
                 AnimatedBuilder(
                   animation: _smallDiscAnimation,
                   builder: (_, __) {
-                    final _size =
+                    final size =
                         _smallDiscAnimation.value.clamp(0.0, double.infinity);
 
                     return Container(
-                      height: _size,
-                      width: _size,
+                      height: size,
+                      width: size,
                       decoration: decoration,
                     );
                   },
@@ -171,7 +168,7 @@ class _AvatarGlowState extends State<AvatarGlow>
 
   @override
   void dispose() {
-    _repeatPauseTimer.cancel();
+    _repeatPauseTimer?.cancel();
     _controller.dispose();
     super.dispose();
   }

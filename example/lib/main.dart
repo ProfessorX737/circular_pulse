@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:avatar_glow/avatar_glow.dart';
+import 'package:avatar_glow/circular_pulse.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               width: double.infinity,
               color: Color(0xff686de0),
-              child: AvatarGlow(
+              child: CircularPulse(
                 endRadius: 70,
                 animate: _animate,
                 child: Material(
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               width: double.infinity,
               color: Color(0xff686de0),
-              child: AvatarGlow(
+              child: CircularPulse(
                 startDelay: Duration(milliseconds: 1000),
                 glowColor: Colors.white,
                 endRadius: 100.0,
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                AvatarGlow(
+                CircularPulse(
                   glowColor: Colors.blue,
                   endRadius: 90.0,
                   duration: Duration(milliseconds: 2000),
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                AvatarGlow(
+                CircularPulse(
                   glowColor: Colors.red,
                   endRadius: 90.0,
                   duration: Duration(milliseconds: 2000),
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            AvatarGlow(
+            CircularPulse(
               glowColor: Colors.cyan,
               endRadius: 60.0,
               duration: Duration(milliseconds: 2000),
